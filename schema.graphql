@@ -1,0 +1,31 @@
+type Factory @entity {
+  id: ID!
+  kpiTokensCount: Int!
+}
+
+type KpiToken @entity {
+  id: ID!
+  kpiId: Bytes!
+  name: String!
+  symbol: String!
+  totalSupply: BigInt!
+  oracle: Bytes!
+  finalized: Boolean!
+  kpiReached: Boolean!
+  creator: Bytes!
+  collateral: Collateral!
+  fee: BigInt!
+}
+
+type CollateralToken @entity {
+  id: ID!
+  symbol: String!
+  name: String!
+  decimals: BigInt!
+}
+
+type Collateral @entity {
+  id: ID!
+  token: CollateralToken!
+  amount: BigInt
+}
