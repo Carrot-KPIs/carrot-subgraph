@@ -5,12 +5,32 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
+    name: Realitio
+    network: rinkeby
+    source:
+      address: '0x3d00d77ee771405628a4ba4913175ecc095538da'
+      abi: Realitio
+      startBlock: 8672009
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/realitio.ts
+      entities:
+        - Factory
+      abis:
+        - name: Realitio
+          file: ./abis/realitio.json
+      eventHandlers:
+        - event: LogNewQuestion(indexed bytes32,indexed address,uint256,string,indexed bytes32,address,uint32,uint32,uint256,uint256)
+          handler: handleNewQuestion
+  - kind: ethereum/contract
     name: Factory
     network: rinkeby
     source:
-      address: '0x74acc6C5a3aE974f8BbDf461aC0250a353A76499'
+      address: '0x8041dE882401F119Dd95d9B6Fad55221fCC3aad2'
       abi: Factory
-      startBlock: 8607680
+      startBlock: 8672009
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -22,7 +42,7 @@ dataSources:
         - name: Factory
           file: ./abis/kpi-tokens-factory.json
       eventHandlers:
-        - event: KpiTokenCreated(address,uint256)
+        - event: KpiTokenCreated(address,uint256,uint32)
           handler: handleNewKpiToken
 templates:
   - kind: ethereum/contract
@@ -47,6 +67,8 @@ templates:
           file: ./abis/erc20-bytes-symbol.json
         - name: ERC20BytesName
           file: ./abis/erc20-bytes-name.json
+        - name: Realitio
+          file: ./abis/realitio.json
       eventHandlers:
         - event: Initialized(bytes32,string,string,uint256,address,address,address)
           handler: handleInitialization

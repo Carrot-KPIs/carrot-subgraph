@@ -17,5 +17,6 @@ export function handleNewKpiToken(event: KpiTokenCreated): void {
 
   let dataSourceContext = new DataSourceContext()
   dataSourceContext.setBigInt('feeAmount', event.params.feeAmount)
+  dataSourceContext.setBigInt('kpiExpiry', event.params.kpiExpiry)
   KpiToken.createWithContext(event.params.kpiToken, dataSourceContext)
 }

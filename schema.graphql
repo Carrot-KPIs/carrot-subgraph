@@ -9,7 +9,9 @@ type KpiToken @entity {
   name: String!
   symbol: String!
   totalSupply: BigInt!
+  expiresAt: BigInt!
   oracle: Bytes!
+  oracleQuestion: Question!
   finalized: Boolean!
   kpiReached: Boolean!
   creator: Bytes!
@@ -28,4 +30,9 @@ type Collateral @entity {
   id: ID!
   token: CollateralToken!
   amount: BigInt
+}
+
+type Question @entity {
+  id: ID!
+  text: String!
 }

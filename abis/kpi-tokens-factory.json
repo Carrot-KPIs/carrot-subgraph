@@ -49,6 +49,12 @@
         "internalType": "uint256",
         "name": "feeAmount",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "kpiExpiry",
+        "type": "uint32"
       }
     ],
     "name": "KpiTokenCreated",
@@ -89,18 +95,15 @@
   {
     "inputs": [
       {
-        "internalType": "bytes32",
-        "name": "c__0x8f9c5f7d",
-        "type": "bytes32"
-      }
-    ],
-    "name": "c_0x8f9c5f7d",
-    "outputs": [],
-    "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [
+        "internalType": "string",
+        "name": "_kpiQuestion",
+        "type": "string"
+      },
+      {
+        "internalType": "uint32",
+        "name": "_kpiExpiry",
+        "type": "uint32"
+      },
       {
         "components": [
           {
@@ -114,7 +117,7 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct KPITokensFactory.Collateral",
+        "internalType": "struct IKPIToken.Collateral",
         "name": "_collateral",
         "type": "tuple"
       },
@@ -136,25 +139,25 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct KPITokensFactory.KpiTokenData",
+        "internalType": "struct IKPIToken.TokenData",
         "name": "_tokenData",
         "type": "tuple"
       },
       {
         "components": [
           {
-            "internalType": "string",
-            "name": "question",
-            "type": "string"
+            "internalType": "uint256",
+            "name": "lowerBound",
+            "type": "uint256"
           },
           {
-            "internalType": "uint32",
-            "name": "kpiExpiry",
-            "type": "uint32"
+            "internalType": "uint256",
+            "name": "higherBound",
+            "type": "uint256"
           }
         ],
-        "internalType": "struct KPITokensFactory.OracleData",
-        "name": "_oracleData",
+        "internalType": "struct IKPIToken.ScalarData",
+        "name": "_scalarData",
         "type": "tuple"
       }
     ],

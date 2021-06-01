@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { dataSource, log } from '@graphprotocol/graph-ts'
 import { Initialized } from '../types/templates/KpiToken/KpiToken'
-import { Collateral, CollateralToken, KpiToken } from '../types/schema'
+import { Collateral, CollateralToken, KpiToken, Question } from '../types/schema'
 import { fetchTokenDecimals, fetchTokenName, fetchTokenSymbol } from '../commons/utils'
 import { ERC20 } from '../types/templates/KpiToken/ERC20'
 
@@ -19,6 +19,13 @@ export function handleInitialization(event: Initialized): void {
 
   let context = dataSource.context()
   kpiToken.fee = context.getBigInt('feeAmount')
+  kpiToken.expiresAt = context.getBigInt('kpiExpiry')
+  let realitioQuestion = Question.load(event.params.kpiId.toHexString())
+  if (!realitioQuestion) {
+    log.error('no realitio question for id {}', [event.params.kpiId.toHexString()])
+    return
+  }
+  kpiToken.oracleQuestion = realitioQuestion.id
 
   let collateralTokenFromEvent = event.params.collateralToken
   let collateralToken = CollateralToken.load(collateralTokenFromEvent.toHexString())
