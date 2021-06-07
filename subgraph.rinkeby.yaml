@@ -72,3 +72,5 @@ templates:
       eventHandlers:
         - event: Initialized(bytes32,string,string,uint256,address,address,address)
           handler: handleInitialization
+        - event: Finalized(uint256)
+          handler: handleFinalization

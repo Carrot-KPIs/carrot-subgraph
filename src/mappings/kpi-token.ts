@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { dataSource, log } from '@graphprotocol/graph-ts'
-import { Initialized } from '../types/templates/KpiToken/KpiToken'
+import { Finalized, Initialized } from '../types/templates/KpiToken/KpiToken'
 import { Collateral, CollateralToken, KpiToken, Question } from '../types/schema'
 import { fetchTokenDecimals, fetchTokenName, fetchTokenSymbol } from '../commons/utils'
 import { ERC20 } from '../types/templates/KpiToken/ERC20'
@@ -52,5 +52,16 @@ export function handleInitialization(event: Initialized): void {
   collateral.save()
 
   kpiToken.collateral = collateral.id
+  kpiToken.save()
+}
+
+export function handleFinalization(event: Finalized): void {
+  let kpiTokenAddressFromEvent = event.address
+  let kpiToken = KpiToken.load(kpiTokenAddressFromEvent.toHexString())
+  if (kpiToken == null) {
+    log.error('tried to finalize non exitent kpi token at address {}', [kpiTokenAddressFromEvent.toHexString()])
+    return
+  }
+  kpiToken.finalized = true
   kpiToken.save()
 }
