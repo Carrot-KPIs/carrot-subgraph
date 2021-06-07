@@ -9,6 +9,9 @@ type KpiToken @entity {
   name: String!
   symbol: String!
   totalSupply: BigInt!
+  lowerBound: BigInt!
+  higherBound: BigInt!
+  finalProgress: BigInt!
   expiresAt: BigInt!
   oracle: Bytes!
   oracleQuestion: Question!

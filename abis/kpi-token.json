@@ -48,24 +48,6 @@
       },
       {
         "indexed": false,
-        "internalType": "string",
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "symbol",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "totalSupply",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
         "internalType": "address",
         "name": "oracle",
         "type": "address"
@@ -73,14 +55,67 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "collateralToken",
+        "name": "creator",
         "type": "address"
       },
       {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
         "indexed": false,
-        "internalType": "address",
-        "name": "creator",
-        "type": "address"
+        "internalType": "struct IKPIToken.Collateral",
+        "name": "collateral",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalSupply",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IKPIToken.TokenData",
+        "name": "tokenData",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "lowerBound",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "higherBound",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IKPIToken.ScalarData",
+        "name": "scalarData",
+        "type": "tuple"
       }
     ],
     "name": "Initialized",

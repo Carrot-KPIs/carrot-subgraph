@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0x3d00d77ee771405628a4ba4913175ecc095538da'
       abi: Realitio
-      startBlock: 8672009
+      startBlock: 8722036
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -28,9 +28,9 @@ dataSources:
     name: Factory
     network: rinkeby
     source:
-      address: '0x8041dE882401F119Dd95d9B6Fad55221fCC3aad2'
+      address: '0xa60c831dc30A6564Aa23044Ade594C2f1e3c9929'
       abi: Factory
-      startBlock: 8672009
+      startBlock: 8722036
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -70,7 +70,7 @@ templates:
         - name: Realitio
           file: ./abis/realitio.json
       eventHandlers:
-        - event: Initialized(bytes32,string,string,uint256,address,address,address)
+        - event: Initialized(bytes32,address,address,(address,uint256),(string,string,uint256),(uint256,uint256))
           handler: handleInitialization
         - event: Finalized(uint256)
           handler: handleFinalization

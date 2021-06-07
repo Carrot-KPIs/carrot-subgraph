@@ -4,18 +4,22 @@ import { Finalized, Initialized } from '../types/templates/KpiToken/KpiToken'
 import { Collateral, CollateralToken, KpiToken, Question } from '../types/schema'
 import { fetchTokenDecimals, fetchTokenName, fetchTokenSymbol } from '../commons/utils'
 import { ERC20 } from '../types/templates/KpiToken/ERC20'
+import { BI_0 } from '../commons/constants'
 
 export function handleInitialization(event: Initialized): void {
   let kpiTokenAddressFromEvent = event.address
   let kpiToken = new KpiToken(kpiTokenAddressFromEvent.toHexString())
   kpiToken.kpiId = event.params.kpiId
-  kpiToken.name = event.params.name
-  kpiToken.symbol = event.params.symbol
-  kpiToken.totalSupply = event.params.totalSupply
+  kpiToken.name = event.params.tokenData.name
+  kpiToken.symbol = event.params.tokenData.symbol
+  kpiToken.totalSupply = event.params.tokenData.totalSupply
   kpiToken.oracle = event.params.oracle
   kpiToken.finalized = false
   kpiToken.kpiReached = false
   kpiToken.creator = event.params.creator
+  kpiToken.lowerBound = event.params.scalarData.lowerBound
+  kpiToken.higherBound = event.params.scalarData.higherBound
+  kpiToken.finalProgress = BI_0
 
   let context = dataSource.context()
   kpiToken.fee = context.getBigInt('feeAmount')
@@ -27,7 +31,7 @@ export function handleInitialization(event: Initialized): void {
   }
   kpiToken.oracleQuestion = realitioQuestion.id
 
-  let collateralTokenFromEvent = event.params.collateralToken
+  let collateralTokenFromEvent = event.params.collateral.token
   let collateralToken = CollateralToken.load(collateralTokenFromEvent.toHexString())
   if (collateralToken == null) {
     collateralToken = new CollateralToken(collateralTokenFromEvent.toHexString())
@@ -63,5 +67,6 @@ export function handleFinalization(event: Finalized): void {
     return
   }
   kpiToken.finalized = true
+  kpiToken.finalProgress = event.params.finalKpiProgress
   kpiToken.save()
 }
