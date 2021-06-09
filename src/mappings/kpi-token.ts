@@ -67,6 +67,7 @@ export function handleFinalization(event: Finalized): void {
     return
   }
   kpiToken.finalized = true
+  kpiToken.kpiReached = event.params.finalKpiProgress >= kpiToken.higherBound
   kpiToken.finalProgress = event.params.finalKpiProgress
   kpiToken.save()
 }
