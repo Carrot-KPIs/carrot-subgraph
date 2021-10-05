@@ -1,14 +1,18 @@
 {
-  "name": "@carrot/subgraph",
+  "name": "@carrot-kpi/subgraph",
   "version": "0.1.0",
   "license": "GPL-3.0",
   "author": "Federico Luzzi <fedeluzzi00@gmail.com>",
   "scripts": {
-    "create:local": "graph create luzzif/kpi-tokens-framework-rinkeby --node http://127.0.0.1:8020",
-    "deploy:local:rinkeby": "graph deploy luzzif/kpi-tokens-framework-rinkeby subgraph.rinkeby.yaml --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "create:local": "graph create luzzif/carrot-local --node http://127.0.0.1:8020",
+    "deploy:local:rinkeby": "graph deploy luzzif/carrot-local subgraph.rinkeby.yaml --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "deploy:local:xdai": "graph deploy luzzif/carrot-local subgraph.xdai.yaml --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
     "codegen:rinkeby": "graph codegen subgraph.rinkeby.yaml --output-dir src/types/",
+    "codegen:xdai": "graph codegen subgraph.xdai.yaml --output-dir src/types/",
     "build:rinkeby": "graph build subgraph.rinkeby.yaml",
-    "deploy:rinkeby": "graph deploy luzzif/kpi-tokens-framework-rinkeby subgraph.rinkeby.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug"
+    "build:xdai": "graph build subgraph.xdai.yaml",
+    "deploy:rinkeby": "graph deploy luzzif/carrot-rinkeby subgraph.rinkeby.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug",
+    "deploy:xdai": "graph deploy luzzif/carrot-xdai subgraph.xdai.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.19.0",

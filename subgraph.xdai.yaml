@@ -1,16 +1,16 @@
 specVersion: 0.0.2
-description: KPI tokens framework Rinkeby subgraph.
+description: KPI tokens framework xDai subgraph.
 repository: https://github.com/luzzif/kpi-tokens-framework-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Realitio
-    network: rinkeby
+    network: xdai
     source:
-      address: '0x3d00d77ee771405628a4ba4913175ecc095538da'
+      address: '0x79e32aE03fb27B07C89c0c568F80287C01ca2E57'
       abi: Realitio
-      startBlock: 9405826
+      startBlock: 18424216
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -26,11 +26,11 @@ dataSources:
           handler: handleNewQuestion
   - kind: ethereum/contract
     name: Factory
-    network: rinkeby
+    network: xdai
     source:
-      address: '0x6752241ee8420cb61a6ae6b666bd5759bfac6eb0'
+      address: '0xe9c1C9722BBE9E36489E16C095641B9c803cEAcb'
       abi: Factory
-      startBlock: 9405826
+      startBlock: 18424216
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -47,7 +47,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: KpiToken
-    network: rinkeby
+    network: xdai
     source:
       abi: KpiToken
     mapping:
