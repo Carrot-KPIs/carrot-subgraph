@@ -25,10 +25,7 @@ export function handleInitialization(event: Initialized): void {
   kpiToken.fee = context.getBigInt('feeAmount')
   kpiToken.expiresAt = context.getBigInt('kpiExpiry')
   let realitioQuestion = Question.load(event.params.kpiId.toHexString())
-  if (!realitioQuestion) {
-    log.error('no realitio question for id {}', [event.params.kpiId.toHexString()])
-    return
-  }
+  if (!realitioQuestion) throw new Error('no realitio question for id '.concat(event.params.kpiId.toHexString()))
   kpiToken.oracleQuestion = realitioQuestion.id
 
   let collateralTokenFromEvent = event.params.collateral.token
