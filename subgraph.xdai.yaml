@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0x79e32aE03fb27B07C89c0c568F80287C01ca2E57'
       abi: Realitio
-      startBlock: 18424216
+      startBlock: 19207573
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -28,9 +28,9 @@ dataSources:
     name: Factory
     network: xdai
     source:
-      address: '0xe9c1C9722BBE9E36489E16C095641B9c803cEAcb'
+      address: '0xe82c4D8b993D613a28600B953e91A3A93Ae69Fd6'
       abi: Factory
-      startBlock: 18424216
+      startBlock: 19207573
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
